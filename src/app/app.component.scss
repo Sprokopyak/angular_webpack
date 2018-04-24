@@ -5,3 +5,9 @@ main {
     margin-top: 50px;
     display: block;
   }
+
+  $red: red;
+
+  h1 {
+    color: $red;
+  }

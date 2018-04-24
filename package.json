@@ -5,9 +5,7 @@
     "scripts": {
         "start": "webpack-dev-server --inline --hot --progress --port 8080",
         "test": "karma start",
-        "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
-        "webpack-dev": "cross-env NODE_ENV=development webpack",
-        "webpack-prod": "cross-env NODE_ENV=production webpack"
+        "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail"
     },
     "license": "MIT",
     "dependencies": {
@@ -46,12 +44,14 @@
         "karma-jasmine": "^1.0.2",
         "karma-sourcemap-loader": "^0.3.7",
         "karma-webpack": "^2.0.1",
+        "node-sass": "^4.8.3",
         "null-loader": "^0.1.1",
         "raw-loader": "^0.5.1",
         "rimraf": "^2.5.2",
+        "sass-loader": "^7.0.1",
         "style-loader": "^0.13.1",
         "typescript": "2.3.4",
-        "webpack": "2.2.1",
+        "webpack": "^2.2.1",
         "webpack-dev-server": "2.4.1",
         "webpack-merge": "^3.0.0"
     }

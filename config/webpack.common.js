@@ -55,11 +55,16 @@ module.exports = {
                     fallbackLoader: 'style-loader',
                     loader: 'css-loader?sourceMap'
                 })
-            },
+            }, 
             {
                 test: /\.css$/,
-                include: helpers.root('src', 'app'),
+                exclude: helpers.root('src', 'app'),
                 loader: 'raw-loader'
+            },
+            { 
+                test: /\.scss$/, 
+                include: helpers.root('src', 'app'),
+                use: ['raw-loader', 'sass-loader']
             }
         ]
     },
