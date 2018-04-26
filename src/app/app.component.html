@@ -1,5 +1,20 @@
-<main>
-    <h1>Hello from Angular App with Webpack</h1>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a routerLink="" routerLinkActive="active" class="navbar-brand">Logo</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a routerLink="/sign-up" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span> Зареєструватись</a>
+            </li>
+            <li>
+                <a routerLink="/sign-in" routerLinkActive="active"><span class="glyphicon glyphicon-log-in"></span> Увійти</a>
+            </li>
+            <li >
+                <a ><span class="glyphicon glyphicon-log-in"></span> Вийти</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-    <img src="../assets/images/angular.png">
-</main>
+<router-outlet></router-outlet>
