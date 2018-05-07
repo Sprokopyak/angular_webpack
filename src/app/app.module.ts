@@ -9,6 +9,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 
 import { AppComponent } from './app.component';
 import { Home } from './components/home/home.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 import { SignUp } from './components/login/sign-up/sign-up.component';
 import { SignIn } from './components/login/sign-in/sign-in.component';
 
@@ -16,6 +17,7 @@ import { SignIn } from './components/login/sign-in/sign-in.component';
     declarations: [
         AppComponent,
         Home,
+        NavigationComponent,
         SignUp,
         SignIn
     ],

@@ -7,14 +7,7 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap'
-
-interface User {
-  uid: string;
-  email: string;
-  photoURL?: string;
-  displayName?: string;
-  favoriteColor?: string;
-}
+import { User } from './user';
 
 
 @Injectable()
@@ -58,7 +51,10 @@ export class AuthService {
             uid: user.uid,
             email: user.email,
             displayName: user.displayName,
-            photoURL: user.photoURL
+            photoURL: user.photoURL,
+            roles: {
+                guest: true
+            }
         }
         return userRef.set(data, { merge: true })
     }
