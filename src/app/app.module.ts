@@ -6,6 +6,7 @@ import { AngularFireModule } from 'angularfire2';
 import { FirebaseConfig } from '../environments/firebase.config';
 import { CoreModule } from './core/core.module';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { Home } from './components/home/home.component';
@@ -24,6 +25,7 @@ import { SignIn } from './components/login/sign-in/sign-in.component';
     imports: [
         CommonModule, 
         BrowserModule,
+        ReactiveFormsModule,
         AppRoutes,
         AngularFireModule.initializeApp(FirebaseConfig.firebase),
         CoreModule

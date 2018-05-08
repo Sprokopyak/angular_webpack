@@ -151,3 +151,25 @@ input {
     font-size: 16px;
     color: #fff;
 }
+
+
+.google{
+    margin: 15px auto 0 auto;
+    display: flex;
+    align-items: center;
+    padding-right: 50px;
+    background: #DF4A32;
+    color: #fff;
+    border: 0;
+}
+
+.google i{
+    padding: 10px 15px;
+    margin-right: 10px;
+    font-size: 25px;
+   border-right: #BE3F2B 2px solid;
+}
+
+.google:hover{
+    background: rgb(221, 92, 73); 
+}

@@ -10,7 +10,7 @@
             <li>
                 <a routerLink="/sign-in" routerLinkActive="active"><span class="glyphicon glyphicon-log-in"></span> Увійти</a>
             </li>
-            <li *ngIf="auth.user | async as user ">
+            <li *ngIf="auth.user | async as user">
                 <a (click)="auth.signOut()"><span class="glyphicon glyphicon-log-in"></span> Вийти</a>
             </li>
         </ul>
