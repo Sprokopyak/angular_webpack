@@ -12,6 +12,7 @@ import { User } from './user';
 @Injectable()
 export class AuthService {
     user: Observable<User>;
+    authState: any = null;
 
     constructor(public afAuth: AngularFireAuth,
                 public afs: AngularFirestore,
@@ -24,7 +25,15 @@ export class AuthService {
                 } else {
                     return Observable.of(null)
                 }
-            })
+            });
+
+            this.afAuth.authState.subscribe((auth) => {
+                this.authState = auth
+            });
+    }
+
+    get isLogedIn(): boolean {
+        return this.authState !== null;
     }
 
     emailSignUp(email: string, password: string) {
@@ -63,6 +72,7 @@ export class AuthService {
     resetPassword(email: string) {
         const fbAuth = firebase.auth();
         return fbAuth.sendPasswordResetEmail(email)
+        .then(() => console.log("email sent"))
         // .then(() => this.notify.update('Password update email sent', 'info'))
         .catch(error => console.log(error));
     }

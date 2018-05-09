@@ -10,6 +10,8 @@ import { AuthService } from '../../../core/auth.service';
 
 export class SignIn implements OnInit {
     public signinForm: FormGroup;
+    public resetPass: FormGroup;
+    showResetPassword: boolean = false;
 
     constructor(
         public fb: FormBuilder, 
@@ -23,6 +25,9 @@ export class SignIn implements OnInit {
                   ]
                 ]
             });
+            this.resetPass = this.fb.group({
+                'email': ['', [Validators.required, Validators.email]]
+            })
         }
 
     ngOnInit(){}
@@ -36,5 +41,14 @@ export class SignIn implements OnInit {
 
     signin() {
         return this.auth.emailLogin(this.email.value, this.password.value)
+    }
+
+    get resetEmail() { 
+        return this.resetPass.get('email') 
+    }
+
+    reset() {
+        console.log(this.resetEmail.value)
+        return this.auth.resetPassword(this.resetEmail.value)
     }
 }
