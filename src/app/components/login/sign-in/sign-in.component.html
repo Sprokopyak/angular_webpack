@@ -1,25 +1,52 @@
 <div class="bg-container-contact100">
 	<div class="container-contact100">
 		<div class="wrap-contact100">
+			<div *ngIf="!showResetPassword; then logIn else resetPassword"></div>
+
+			<ng-template #logIn>
 			<div class="contact100-form-title">
 				<span>Увійти</span>
 			</div>
 
-            <form class="contact100-form">
+			<button (click)="auth.googleLogin()" class="google">
+				<i class="fa fa-google"></i> Log in with Google
+			</button>
+
+            <form [formGroup]="signinForm" (ngSubmit)="signin()" class="contact100-form">
 				<div class="wrap-input100">
 					<span class="label-input100">Ваш емейл:</span>
-					<input class="input100 " type="email" required placeholder="Ваш емейл">
+					<input class="input100 " type="email" required placeholder="Ваш емейл" formControlName="email">
 				</div>
 
 				<div class="wrap-input100">
 					<span class="label-input100">Ваш пароль:</span>
-					<input class="input100" type="password" required placeholder="Ваш пароль">
+					<input class="input100" type="password" required placeholder="Ваш пароль" formControlName="password">
 				</div>
 
 				<div class="container-contact100-form-btn">
-					<input type="submit" class="contact100-form-btn" value="Увійти">
+					<input type="submit" class="contact100-form-btn" value="Увійти" [disabled]="!signinForm.valid">
+					
 				</div>
 			</form>
+
+			<a (click)="showResetPassword = true">Забув пароль</a>
+		</ng-template>
+
+		<ng-template #resetPassword>
+			<div class="contact100-form-title">
+				<span>Скинути пароль</span>
+			</div>
+			<form [formGroup]="resetPass" (ngSubmit)="reset()" class="contact100-form">
+				<div class="wrap-input100">
+					<span class="label-input100">Ваш емейл:</span>
+					<input class="input100 " type="email" required placeholder="Ваш емейл" formControlName="email">
+				</div>
+				
+				<div class="container-contact100-form-btn">	
+					<input type="submit" class="contact100-form-btn" [disabled]="!resetPass.valid" value="Відновити пароль">
+				</div>
+			</form> 
+		</ng-template>
 		</div>
 	</div>
 </div>
