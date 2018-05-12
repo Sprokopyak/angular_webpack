@@ -9,10 +9,10 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { Home } from './components/home/home.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
-import { SignUp } from './components/login/sign-up/sign-up.component';
-import { SignIn } from './components/login/sign-in/sign-in.component';
+import { Home } from './home/home.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { SignUp } from './login/sign-up/sign-up.component';
+import { SignIn } from './login/sign-in/sign-in.component';
 
 @NgModule({
     declarations: [

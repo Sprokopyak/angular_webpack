@@ -79,14 +79,23 @@ export class AuthService {
 
     signOut() {
         this.afAuth.auth.signOut()
-        .then(() => { this.router.navigate(['/home'])});
+        .then(() => { this.router.navigate(['/home'])})
+        .catch(error => console.log(error));
     }
 
     googleLogin() {
         const provider = new firebase.auth.GoogleAuthProvider()
         return this.oAuthLogin(provider)
-        .then(() => { this.router.navigate(['/home'])});
+        .then(() => { this.router.navigate(['/home'])})
+        .catch(error => console.log(error));
     }
+
+    facebookLogin() {
+        const provider = new firebase.auth.FacebookAuthProvider()
+        return this.oAuthLogin(provider)
+        .then(() => { this.router.navigate(['/home'])})
+        .catch(error => console.log(error));
+      }
 
     private oAuthLogin(provider:any) {
         return this.afAuth.auth.signInWithPopup(provider)
