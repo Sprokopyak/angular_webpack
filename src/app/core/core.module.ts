@@ -4,7 +4,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
-import { AuthService } from './auth.service';
+import { AuthService } from './auth-service/auth.service';
 
 @NgModule({
     imports: [
