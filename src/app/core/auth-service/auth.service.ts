@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
@@ -16,6 +17,7 @@ export class AuthService {
 
     constructor(public afAuth: AngularFireAuth,
                 public afs: AngularFirestore,
+                public db: AngularFireDatabase,
                 private router: Router) {         
 
             this.user = this.afAuth.authState
@@ -28,9 +30,16 @@ export class AuthService {
             });
 
             this.afAuth.authState.subscribe((auth) => {
+                if(auth){
+                    firebase.auth().currentUser.getIdToken()
+                    .then((val)=>{
+                        // console.log(val)
+                    })
+                }
                 this.authState = auth
             });
     }
+
 
     get isLogedIn(): boolean {
         return this.authState !== null;
@@ -56,7 +65,10 @@ export class AuthService {
             uid: user.uid,
             email: user.email || null,
             displayName: user.displayName,
-            photoURL: 'https://goo.gl/Fz9nrQ'
+            photoURL: 'https://goo.gl/Fz9nrQ',
+            roles: {
+                admin: false
+            }
         }
         return userRef.set(data, { merge: true })
     }
