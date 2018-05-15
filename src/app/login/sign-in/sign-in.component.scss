@@ -1,4 +1,16 @@
-.bg-container-contact100{
+a {
+    cursor: pointer;
+}
+
+.showPass{
+    margin: 15px;
+}
+
+.back-btn{
+    margin-bottom: 25px;
+}
+
+.bg-container-contact100 {
     background-image: url(../../../assets/images/bg-01.jpg);
     width: 100%;
     height: 100%;
@@ -167,9 +179,30 @@ input {
     padding: 10px 15px;
     margin-right: 10px;
     font-size: 25px;
-   border-right: #BE3F2B 2px solid;
+    border-right: #BE3F2B 2px solid;
 }
 
 .google:hover{
     background: rgb(221, 92, 73); 
+}
+
+.facebook{
+    margin: 15px auto 0 auto;
+    background: #4267B2;
+    display: flex;
+    align-items: center;
+    padding-right: 34px;
+    color: #fff;
+    border: 0;
+}
+
+.facebook i {
+    padding: 10px 20px;
+    margin-right: 10px;
+    font-size: 25px;
+    border-right: rgb(40, 70, 131) 2px solid;
+}
+
+.facebook:hover{
+    background: rgb(88, 120, 184)
 }

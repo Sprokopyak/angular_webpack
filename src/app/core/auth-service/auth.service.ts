@@ -7,7 +7,7 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
-import { User } from './user';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class AuthService {
@@ -79,14 +79,23 @@ export class AuthService {
 
     signOut() {
         this.afAuth.auth.signOut()
-        .then(() => { this.router.navigate(['/home'])});
+        .then(() => { this.router.navigate(['/home'])})
+        .catch(error => console.log(error));
     }
 
     googleLogin() {
         const provider = new firebase.auth.GoogleAuthProvider()
         return this.oAuthLogin(provider)
-        .then(() => { this.router.navigate(['/home'])});
+        .then(() => { this.router.navigate(['/home'])})
+        .catch(error => console.log(error));
     }
+
+    facebookLogin() {
+        const provider = new firebase.auth.FacebookAuthProvider()
+        return this.oAuthLogin(provider)
+        .then(() => { this.router.navigate(['/home'])})
+        .catch(error => console.log(error));
+      }
 
     private oAuthLogin(provider:any) {
         return this.afAuth.auth.signInWithPopup(provider)
