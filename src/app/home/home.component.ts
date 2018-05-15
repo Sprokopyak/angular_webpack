@@ -8,6 +8,8 @@ import { AuthService } from '../core/auth-service/auth.service';
     styleUrls: ['./home.component.scss']
 })
 export class Home implements OnInit {
-    constructor(public auth: AuthService) { }
-    ngOnInit(){}
+    constructor(public auth: AuthService) { 
+    }
+    ngOnInit(){
+    }
 }

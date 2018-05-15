@@ -13,6 +13,7 @@ import { Home } from './home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SignUp } from './login/sign-up/sign-up.component';
 import { SignIn } from './login/sign-in/sign-in.component';
+import { Admin } from './admin/admin.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { SignIn } from './login/sign-in/sign-in.component';
         Home,
         NavigationComponent,
         SignUp,
-        SignIn
+        SignIn,
+        Admin
     ],
     imports: [
         CommonModule, 
