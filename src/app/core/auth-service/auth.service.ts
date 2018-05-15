@@ -10,15 +10,17 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import { User } from '../models/user.model';
 
+
 @Injectable()
 export class AuthService {
     user: Observable<User>;
     authState: any = null;
-
+    currentUser: User;
     constructor(public afAuth: AngularFireAuth,
                 public afs: AngularFirestore,
                 public db: AngularFireDatabase,
-                private router: Router) {         
+                private router: Router) {     
+                
 
             this.user = this.afAuth.authState
                 .switchMap(user => {
@@ -32,14 +34,13 @@ export class AuthService {
             this.afAuth.authState.subscribe((auth) => {
                 if(auth){
                     firebase.auth().currentUser.getIdToken()
-                    .then((val)=>{
-                        // console.log(val)
+                    .then(idToken => { 
+                        return localStorage.setItem('userToken', idToken); 
                     })
                 }
                 this.authState = auth
             });
     }
-
 
     get isLogedIn(): boolean {
         return this.authState !== null;
@@ -66,9 +67,7 @@ export class AuthService {
             email: user.email || null,
             displayName: user.displayName,
             photoURL: 'https://goo.gl/Fz9nrQ',
-            roles: {
-                admin: false
-            }
+            role: 'user'
         }
         return userRef.set(data, { merge: true })
     }
@@ -95,9 +94,23 @@ export class AuthService {
         .catch(error => console.log(error));
     }
 
+    googleSignUp() {
+        const provider = new firebase.auth.GoogleAuthProvider()
+        return this.oAuthSignUp(provider)
+        .then(() => { this.router.navigate(['/home'])})
+        .catch(error => console.log(error));
+    }
+
     googleLogin() {
         const provider = new firebase.auth.GoogleAuthProvider()
         return this.oAuthLogin(provider)
+        .then(() => { this.router.navigate(['/home'])})
+        .catch(error => console.log(error));
+    }
+
+    facebookSignUp() {
+        const provider = new firebase.auth.FacebookAuthProvider()
+        return this.oAuthSignUp(provider)
         .then(() => { this.router.navigate(['/home'])})
         .catch(error => console.log(error));
     }
@@ -107,9 +120,13 @@ export class AuthService {
         return this.oAuthLogin(provider)
         .then(() => { this.router.navigate(['/home'])})
         .catch(error => console.log(error));
-      }
+    }
 
     private oAuthLogin(provider:any) {
+        return this.afAuth.auth.signInWithPopup(provider)
+    }
+
+    private oAuthSignUp(provider:any) {
         return this.afAuth.auth.signInWithPopup(provider)
         .then((credential) => {
             this.setUserDoc(credential.user)

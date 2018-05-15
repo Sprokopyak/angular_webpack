@@ -17,7 +17,7 @@ export class AdminGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean>  | boolean {
     return this.auth.user
       .take(1)
-      .map(users => this.auth.isLogedIn && users.roles.admin ? true : false)
+      .map(users => this.auth.isLogedIn && users.role === 'admin')
       .do(isAdmin => {
         if (!isAdmin) {
           console.error('Access denied - Admins only')
